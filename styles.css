@@ -3,6 +3,7 @@
 2. Colors and fonts
 3. Page elements
 4. Animations
+5. Media queries
 */
 
 /* 1. Reset */
@@ -25,6 +26,8 @@
     --very-dark-blue:  hsl(235, 16%, 14%);
     --mostly-dark-blue: hsl(234, 17%, 12%);
     --mountain-purple: #2F2439;
+    --top-card-bg: hsl(245, 23%, 24%);
+    --bottom-card-bg: hsl(245, 15%, 29%);
     /* Fonts */
     font-family: 'Red Hat Text', sans-serif;
     font-size: 14px;
@@ -53,6 +56,10 @@ main {
     gap: 5rem;
 }
 
+h1 {
+    letter-spacing: 0.8rem;
+}
+
 .grid_container {
     display: grid;
     grid-template-columns: 1fr;
@@ -71,10 +78,10 @@ p {
 
 .top {
     height: 5rem;
-    width: 15rem;
-    background-color: var(--dark-desat-blue);
+    width: 12.5rem;
+    background-color: var(--top-card-bg);
     border-radius: 15px 15px 0px 0px;
-    border-bottom: inset 2px var(--mostly-dark-blue);
+    border-bottom: inset 1px var(--mostly-dark-blue);
     position: relative;
     top: 5rem;
     z-index: 1;
@@ -97,25 +104,11 @@ p {
     z-index: 0;
 }
 
-.animate-top {
-    animation-name: flip-card-top;
-    animation-duration: 950ms;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-}
-
-.animate-bottom {
-    animation-name: flip-card-bottom;
-    animation-duration: 950ms;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-out;
-}
-
 .bottom {
-    width: 15rem;
+    width: 12.5rem;
     height: 10rem;
     border-radius: 15px 15px 15px 15px;
-    background-color: var(--grayish-blue);
+    background-color: var(--bottom-card-bg);
     box-shadow: 0px 8px var(--mostly-dark-blue);
 }
 
@@ -129,6 +122,17 @@ h2 {
     display: flex;
     justify-content: center;
     gap: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+img:hover {
+    color: var(--soft-red);
+    fill: var(--soft-red);
+}
+
+footer {
+    position: relative;
+    top: 8rem;
 }
 
 /* 4. Animations */
@@ -165,5 +169,42 @@ h2 {
     100% {
         transform-origin: center;
         transform: scale(1, 1);
+    }
+}
+
+/* 5. Media queries */
+
+/* Smartphones*/
+@media screen and (max-width: 450px) and (orientation: portrait) {
+    main {
+        gap: 0.6rem;
+    }
+    
+    p {
+        font-size: 3.5rem;
+        padding: 0.7rem 0;
+    }
+    
+    h1 {
+        font-size: 1.7rem;
+        letter-spacing: 0.45rem;
+    }
+    
+    h2 {
+        font-size: 0.8rem;
+        letter-spacing: 0.08rem;
+    }
+    
+    .top {
+        height: 3rem;
+        width: 6rem;
+        top: 3rem;
+        border-radius: 6px 6px 0px 0px
+    }
+    
+    .bottom {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 6px;
     }
 }
