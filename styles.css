@@ -64,6 +64,7 @@ h1 {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+    position: relative;
 }
 
 p {
@@ -87,6 +88,43 @@ p {
     z-index: 1;
 }
 
+.bottom {
+    width: 12.5rem;
+    height: 10rem;
+    border-radius: 15px 15px 15px 15px;
+    background-color: var(--bottom-card-bg);
+    box-shadow: 0px 8px var(--mostly-dark-blue);
+}
+
+:is(.top, .bottom)::before,
+:is(.top, .bottom)::after {
+    content: '';
+    height: 1.2rem;
+    width: 1.2rem;
+    position: absolute;
+    background-color: var(--mostly-dark-blue);
+}
+
+:is(.top, .bottom)::before {
+    clip-path: circle(50% at 0%);
+    left: 0%;   
+}
+
+:is(.top, .bottom)::after {
+    clip-path: circle(50% at 100%);
+    left: 90.5%;
+}
+
+.top::after, 
+.top::before {
+    top: 87%;
+}
+
+.bottom::before,
+.bottom::after {
+    top: 44%;
+}
+
 .z3 {
     z-index: 3;
 }
@@ -104,14 +142,6 @@ p {
     z-index: 0;
 }
 
-.bottom {
-    width: 12.5rem;
-    height: 10rem;
-    border-radius: 15px 15px 15px 15px;
-    background-color: var(--bottom-card-bg);
-    box-shadow: 0px 8px var(--mostly-dark-blue);
-}
-
 h2 {
     margin-top: 1rem;
     color: var(--grayish-blue);
@@ -125,14 +155,18 @@ h2 {
     margin-bottom: 1rem;
 }
 
-img:hover {
-    color: var(--soft-red);
-    fill: var(--soft-red);
-}
-
 footer {
     position: relative;
-    top: 8rem;
+    top: 12rem;
+
+}
+
+svg {
+    fill: var(--grayish-blue);
+}
+
+svg:hover {
+    fill: var(--soft-red);
 }
 
 /* 4. Animations */
@@ -175,7 +209,11 @@ footer {
 /* 5. Media queries */
 
 /* Smartphones*/
-@media screen and (max-width: 450px) and (orientation: portrait) {
+@media (max-width: 450px), screen and (orientation: portrait) {
+    body {
+            background-size: auto;
+    }
+    
     main {
         gap: 0.6rem;
     }
@@ -206,5 +244,19 @@ footer {
         height: 6rem;
         width: 6rem;
         border-radius: 6px;
+    }
+    
+    :is(.top, .bottom)::before,
+    :is(.top, .bottom)::after {
+        height: 0.9rem;
+        width: 0.9rem;
+    }
+    
+    :is(.top, .bottom)::after {
+        left: 85%;
+    }
+    
+    footer {
+        top: 8rem;
     }
 }
